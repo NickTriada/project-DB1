@@ -1,3 +1,5 @@
+
+
 try:
     from Tkinter import *
 except ImportError:
@@ -11,6 +13,9 @@ except ImportError:
     py3 = True
 
 import db_project_support
+
+
+#import db_ops as dbops
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -37,7 +42,18 @@ def destroy_project_DB1():
 
 
 class project_DB1:
+
+    def tt(self):
+        print("test0")
+        print("test1")
+        print("test2")
+        print("test3")
+
     def __init__(self, top=None):
+        # def test1(self):
+        #     name = self.Entry1.get()
+        #     print(name)
+
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -61,33 +77,26 @@ class project_DB1:
 
 
 
+
+
         self.Button1 = Button(top)
         self.Button1.place(relx=0.37, rely=0.03, height=74, width=162)
-        self.Button1.configure(activebackground="#d8a600")
-        self.Button1.configure(activeforeground="#000000")
-        self.Button1.configure(background="#7777d8")
-        self.Button1.configure(disabledforeground="#a3a3a3")
-        self.Button1.configure(font=font9)
-        self.Button1.configure(foreground="#000000")
-        self.Button1.configure(highlightbackground="#d9d9d9")
-        self.Button1.configure(highlightcolor="black")
-        self.Button1.configure(pady="0")
+        self.Button1.configure(activebackground="#d8a600", activeforeground="#000000", disabledforeground="#a3a3a3")
+        self.Button1.configure(background="#7777d8", font=font9, foreground="#000000", pady="0", width=162)
+        self.Button1.configure(highlightbackground="#d9d9d9", highlightcolor="black")
         self.Button1.configure(text='''write to DB''')
-        self.Button1.configure(width=162)
+        self.Button1.configure(command=project_DB1.tt(self))
+
 
         self.Button2 = Button(top)
         self.Button2.place(relx=0.37, rely=0.12, height=64, width=162)
-        self.Button2.configure(activebackground="#d80d0d")
-        self.Button2.configure(activeforeground="white")
-        self.Button2.configure(activeforeground="#000000")
-        self.Button2.configure(background="#d80d0d")
-        self.Button2.configure(disabledforeground="#a3a3a3")
-        self.Button2.configure(foreground="#000000")
-        self.Button2.configure(highlightbackground="#d9d9d9")
-        self.Button2.configure(highlightcolor="black")
+        self.Button2.configure(activebackground="#d80d0d", activeforeground="white",background="#d80d0d" )
+        self.Button2.configure(foreground="#000000", disabledforeground="#a3a3a3", highlightbackground="#d9d9d9",highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Pull DB list''')
         self.Button2.configure(width=162)
+
+
 
         self.Frame1 = Frame(top)
         self.Frame1.place(relx=0.01, rely=0.02, relheight=0.36, relwidth=0.35)
@@ -113,6 +122,8 @@ class project_DB1:
         self.Entry1.configure(insertbackground="black")
         self.Entry1.configure(width=364)
 
+
+
         self.Label1 = Label(self.Frame1)
         self.Label1.place(relx=0.04, rely=0.23, height=38, width=118)
         self.Label1.configure(background="#d9d9d9")
@@ -125,28 +136,28 @@ class project_DB1:
         self.Label2.configure(background="#d9d9d9")
         self.Label2.configure(disabledforeground="#a3a3a3")
         self.Label2.configure(foreground="#000000")
-        self.Label2.configure(text='''YOB''')
+        self.Label2.configure(text='''Office''')
 
         self.Label3 = Label(self.Frame1)
         self.Label3.place(relx=0.04, rely=0.5, height=38, width=62)
         self.Label3.configure(background="#d9d9d9")
         self.Label3.configure(disabledforeground="#a3a3a3")
         self.Label3.configure(foreground="#000000")
-        self.Label3.configure(text='''Label''')
+        self.Label3.configure(text='''Age''')
 
         self.Label4 = Label(self.Frame1)
         self.Label4.place(relx=0.04, rely=0.64, height=38, width=62)
         self.Label4.configure(background="#d9d9d9")
         self.Label4.configure(disabledforeground="#a3a3a3")
         self.Label4.configure(foreground="#000000")
-        self.Label4.configure(text='''Label''')
+        self.Label4.configure(text='''Salary''')
 
         self.Label5 = Label(self.Frame1)
         self.Label5.place(relx=0.04, rely=0.79, height=38, width=62)
         self.Label5.configure(background="#d9d9d9")
         self.Label5.configure(disabledforeground="#a3a3a3")
         self.Label5.configure(foreground="#000000")
-        self.Label5.configure(text='''Label''')
+        self.Label5.configure(text='''Data''')
 
         self.Entry2 = Entry(self.Frame1)
         self.Entry2.place(relx=0.29, rely=0.23,height=34, relwidth=0.66)

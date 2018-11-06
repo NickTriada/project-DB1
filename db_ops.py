@@ -1,5 +1,7 @@
 import pyodbc
 import take_csv as tcsv
+import ui as ui
+
 
 # getting data from local DB
 def db_get_data():
@@ -20,17 +22,32 @@ def db_get_data():
 
 
 # insert data to local DB
-def record_to_db(id_now):
+def record_to_db(i, id_now, kwargs):
+    print(kwargs['Firstname'])
+    print(kwargs['Position'])
+
+
+
     csv_data = tcsv.csv_data()
     #print(csv_data[0])
-    i = 4
+    #i = 7               # <------
     Id = int(id_now) + 1
-    Firstname = csv_data[i][0]
-    Position = csv_data[i][1]
-    Office = csv_data[i][2]
-    Age = csv_data[i][3]
-    Salary = csv_data[i][5]
-    data = csv_data[i][4]
+
+    if i == 0:
+        Firstname = (kwargs['Firstname'])
+        Position = (kwargs['Position'])
+        Office = (kwargs['Office'])
+        Age = (kwargs['Age'])
+        Salary = "$$$$$"
+        data = "01-01-01"
+
+    else:
+        Firstname = csv_data[i][0]
+        Position = csv_data[i][1]
+        Office = csv_data[i][2]
+        Age = csv_data[i][3]
+        Salary = csv_data[i][5]
+        data = csv_data[i][4]
 
     cursor = db_get_data.connection.cursor()
     SQLCommand = ("""
@@ -48,7 +65,17 @@ def record_to_db(id_now):
     db_get_data.connection.close()
 
 
-record_to_db(db_get_data())
-print("After adding records at DB (quantity):", db_get_data())
+def main(xx, **kwargs):
+    num_line = xx
+
+    #print({kwargs['OFFICE']})
+    record_to_db(num_line, db_get_data(), kwargs)
+    print("After adding records at DB (quantity):", db_get_data())
+    return 1
+
+
+if __name__ == '__main__':
+    main()
+
 
 
