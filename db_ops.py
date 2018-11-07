@@ -38,8 +38,8 @@ def record_to_db(i, id_now, kwargs):
         Position = (kwargs['Position'])
         Office = (kwargs['Office'])
         Age = (kwargs['Age'])
-        Salary = "$$$$$"
-        data = "01-01-01"
+        Salary = (kwargs['Salary'])
+        data = (kwargs['data'])
 
     else:
         Firstname = csv_data[i][0]

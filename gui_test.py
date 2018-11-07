@@ -5,7 +5,7 @@ import db_ops as dbops
 class ExampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
-        self.geometry("480x170+800+250")
+        self.geometry("480x220+800+250")
         self.title("project-DB1")
         toolbar = tk.Frame(self)
         toolbar.pack(side="top", fill="x")
@@ -15,7 +15,7 @@ class ExampleApp(tk.Tk):
         b2.pack(in_=toolbar, side="left")
 
         self.text = tk.Text(self, wrap="word")
-        self.text.place(x=300, y=5, height=155, width=170)
+        self.text.place(x=300, y=5, height=205, width=170)
 
         self.lbl1 = tk.Label()
         self.lbl1.configure(text='''Number=0''')
@@ -24,7 +24,6 @@ class ExampleApp(tk.Tk):
         yy = 35
         self.ent1 = tk.Entry()
         self.ent1.place(x=90, y=yy, height=25, width=200)
-
 
         self.lbl2 = tk.Label()
         self.lbl2.configure(text='''First Name''')
@@ -40,7 +39,6 @@ class ExampleApp(tk.Tk):
         self.ent3 = tk.Entry()
         self.ent3.place(x=90, y=yy+50, height=25, width=200)
 
-
         self.lbl4 = tk.Label()
         self.lbl4.configure(text='''Office''')
         self.lbl4.place(x=5, y=yy+75, height=25, width=80)
@@ -55,14 +53,28 @@ class ExampleApp(tk.Tk):
         self.ent5 = tk.Entry()
         self.ent5.place(x=90, y=yy+100, height=25, width=200)
 
+        self.lbl6 = tk.Label()
+        self.lbl6.configure(text='''Salary''')
+        self.lbl6.place(x=5, y=yy+125, height=25, width=80)
+
+        self.ent6 = tk.Entry()
+        self.ent6.place(x=90, y=yy+125, height=25, width=200)
+
+        self.lbl7 = tk.Label()
+        self.lbl7.configure(text='''data''')
+        self.lbl7.place(x=5, y=yy+150, height=25, width=80)
+
+        self.ent7 = tk.Entry()
+        self.ent7.place(x=90, y=yy+150, height=25, width=200)
 
         sys.stdout = TextRedirector(self.text, "stdout")
         sys.stderr = TextRedirector(self.text, "stderr")
 
     def print_stdout(self):
         ent_1 = self.ent1.get()
-        x = dbops.main(int(ent_1), Firstname=self.ent2.get(), Position=self.ent3.get(), Office=self.ent4.get(), Age=self.ent5.get())
-
+        x = dbops.main(int(ent_1), Firstname=self.ent2.get(),
+                       Position=self.ent3.get(), Office=self.ent4.get(),
+                       Age=self.ent5.get(), Salary=self.ent6.get(), data=self.ent7.get())
 
         '''Illustrate that using 'print' writes to stdout'''
         # print("this is stdout")
