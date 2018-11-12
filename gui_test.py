@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import sys
 import db_ops as dbops
 
@@ -67,8 +68,34 @@ class ExampleApp(tk.Tk):
         self.ent7 = tk.Entry()
         self.ent7.place(x=90, y=yy+150, height=25, width=200)
 
+        self.tree = ttk.Treeview(self)
+        self.tree["columns"] = ("one", "two", "three", "four", "five")
+        self.tree.column("#0", width=50, minwidth=50)
+        self.tree.column("one", width=50, minwidth=50)
+        self.tree.column("two", width=50, minwidth=50)
+        self.tree.column("three", width=50, minwidth=50) # stretch=tk.NO
+        self.tree.column("four", width=50, minwidth=50)
+        self.tree.column("five", width=50, minwidth=50)
+
+        self.tree.heading("#0", text="First Name", anchor=tk.W)
+        self.tree.heading("one", text="Position", anchor=tk.W)
+        self.tree.heading("two", text="Office", anchor=tk.W)
+        self.tree.heading("three", text="Age", anchor=tk.W)
+        self.tree.heading("four", text="Salary", anchor=tk.W)
+        self.tree.heading("five", text="data", anchor=tk.W)
+
         sys.stdout = TextRedirector(self.text, "stdout")
         sys.stderr = TextRedirector(self.text, "stderr")
+
+    def table(self):
+        #
+        # add here functionality for parsing data from DB to table
+        #
+
+        for x in range(1, 20):
+            self.tree.insert("", x, "", text=str(x), values=("Position", "Office", "Age", "Salary", "data"))
+
+        self.tree.place(x=5, y=150+65, height=205, width=370)
 
     def print_stdout(self):
         ent_1 = self.ent1.get()
@@ -82,6 +109,7 @@ class ExampleApp(tk.Tk):
     def print_stderr(self):
         ent_1 = self.ent1.get()
         ddd = dbops.del_record_db(int(ent_1))
+
         '''Illustrate that we can write directly to stderr'''
         sys.stderr.write("this is stderr\n" + str(ent_1))
 
