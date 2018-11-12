@@ -6,7 +6,7 @@ import db_ops as dbops
 class ExampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
-        self.geometry("380x425+800+250")
+        self.geometry("380x625+800+250")
         self.title("project-DB1")
         toolbar = tk.Frame(self)
         toolbar.pack(side="top", fill="x")
@@ -16,7 +16,7 @@ class ExampleApp(tk.Tk):
         b2.pack(in_=toolbar, side="left")
 
         self.text = tk.Text(self, wrap="word")
-        self.text.place(x=5, y=150+65, height=205, width=370)
+        self.text.place(x=5, y=150+65+200, height=205, width=370)
 
         self.lbl1 = tk.Label()
         self.lbl1.configure(text='''Number=0''')
@@ -87,17 +87,20 @@ class ExampleApp(tk.Tk):
         sys.stdout = TextRedirector(self.text, "stdout")
         sys.stderr = TextRedirector(self.text, "stderr")
 
-    def table(self):
+    def table(self, *arg):
         #
         # add here functionality for parsing data from DB to table
         #
-
-        for x in range(1, 20):
-            self.tree.insert("", x, "", text=str(x), values=("Position", "Office", "Age", "Salary", "data"))
-
-        self.tree.place(x=5, y=150+65, height=205, width=370)
+        table = dbops.get_list()
+        data = arg
+        #print(data)
+        for x in range(0, 20):
+            self.tree.insert("", x, "", text=table[0][x], values=(table[1][x], table[2][x],
+                                                                  table[3][x], table[4][x], table[5][x]))
+        self.tree.place(x=5, y=150+65, height=195, width=370)
 
     def print_stdout(self):
+
         ent_1 = self.ent1.get()
         x = dbops.main(int(ent_1), Firstname=self.ent2.get(),
                        Position=self.ent3.get(), Office=self.ent4.get(),
@@ -107,9 +110,10 @@ class ExampleApp(tk.Tk):
         # print("this is stdout")
 
     def print_stderr(self):
+        self.table(1)
+
         ent_1 = self.ent1.get()
         ddd = dbops.del_record_db(int(ent_1))
-
         '''Illustrate that we can write directly to stderr'''
         sys.stderr.write("this is stderr\n" + str(ent_1))
 

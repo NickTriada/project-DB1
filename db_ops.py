@@ -2,16 +2,19 @@ import pyodbc
 import take_csv as tcsv
 import ui as ui
 
-
+global connection
+global pointer
+connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+pointer = connection.cursor()
 
 # getting data from local DB
 def db_get_data():
-    global connection
-    global pointer
     connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
     pointer = connection.cursor()
+
     pointer.execute("""
     SELECT * FROM [testDB].[dbo].[final_data_table1]
+    ORDER BY [ID]
     """)
     db_get_data.data_all = []
     while True:
@@ -21,8 +24,39 @@ def db_get_data():
         db_get_data.data_all.append(row)
     how_many_ids_at_db = len(db_get_data.data_all)
     print("records at DB (quantity):", how_many_ids_at_db, "\n")
+    print(db_get_data.data_all[:])
     return how_many_ids_at_db
 
+def get_list():
+    pointer = connection.cursor()
+    pointer.execute("""
+                SELECT * FROM [testDB].[dbo].[final_data_table1]
+                ORDER BY [ID]
+                """)
+
+    table_data_firstname = []
+    table_data_Position = []
+    table_data_Office = []
+    table_data_Age = []
+    table_data_Salary = []
+    table_data_Date = []
+    data_list = [[], [], [], [], [], []]
+
+    while True:
+        row = pointer.fetchone()
+        if not row:
+            break
+        table_data_firstname.append(row.Name)
+        table_data_Position.append(row.Position)
+        table_data_Office.append(row.Office)
+        table_data_Age.append(row.Age)
+        table_data_Salary.append(row.Salary)
+        table_data_Date.append(row.Date)
+    data_list = [table_data_firstname, table_data_Position, table_data_Office,
+                 table_data_Age, table_data_Salary, table_data_Date]
+
+    #print(data_list[1][0])
+    return data_list
 
 def del_record_db(dd):
     conn = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
@@ -111,7 +145,7 @@ def record_to_db(i, id_now, kwargs):
     connection.commit()
     # closing connection
     print("Data Successfully Inserted")
-    connection.close()
+    #connection.close()
 
 
 def main(xx, **kwargs):
