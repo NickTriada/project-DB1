@@ -3,10 +3,13 @@ import take_csv as tcsv
 import ui as ui
 
 
+
 # getting data from local DB
 def db_get_data():
-    db_get_data.connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
-    pointer = db_get_data.connection.cursor()
+    global connection
+    global pointer
+    connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+    pointer = connection.cursor()
     pointer.execute("""
     SELECT * FROM [testDB].[dbo].[final_data_table1]
     """)
@@ -24,28 +27,47 @@ def db_get_data():
 def del_record_db(dd):
     conn = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
     pointer = conn.cursor()
-    pointer.execute("""
-    SELECT * FROM [testDB].[dbo].[final_data_table1]
+    # pointer.execute("""
+    # SELECT * FROM [testDB].[dbo].[final_data_table1]
+    # """)
+    #
+    # records = pointer.fetchall()
+    #
+    # for record in records:
+    #     print(record)
+
+
+    #cursor = pointer
+    SQLCommand = ("""
+    delete from [testDB].[dbo].[final_data_table1] 
+    where ID=?
     """)
+    ID = dd
+    # Processing Query
+    pointer.execute(SQLCommand, ID)
+    # Committing any pending transaction to the database.
+    conn.commit()
+    # closing connection
+    print("Data Successfully Deleted")
+    conn.close()
 
-    records = pointer.fetchall()
+    #
+    # pointer.execute("""
+    # delete from [testDB].[dbo].[final_data_table1]
+    # where ID=?
+    # """)
+    # ID = dd
 
-    for record in records:
-        print(record)
-
-    pointer.execute(""" delete from [testDB].[dbo].[final_data_table1] 
-    where ID=?""", (dd,))
     print("\nRecord Deleted successfully ")
-    print("\nDisplaying Total records from mobile table after Deleting single record \n ")
-    pointer.execute("""
-        SELECT * FROM [testDB].[dbo].[final_data_table1]
-        """)
+    # print("\nDisplaying Total records from table after Deleting single record \n ")
+    # pointer.execute("""
+    #     SELECT * FROM [testDB].[dbo].[final_data_table1]
+    #     """)
+    #
+    # records = pointer.fetchall()
+    # for record in records:
+    #     print(record)
 
-    records = pointer.fetchall()
-    for record in records:
-        print(record)
-
-    return dd
 
 
 # insert data to local DB
@@ -76,7 +98,7 @@ def record_to_db(i, id_now, kwargs):
         Salary = csv_data[i][5]
         data = csv_data[i][4]
 
-    cursor = db_get_data.connection.cursor()
+    #cursor = connection.cursor()
     SQLCommand = ("""
     INSERT INTO final_data_table1 
     ([ID],[Name],[Position],[Office],[Age],[Salary],[Date]) 
@@ -84,12 +106,12 @@ def record_to_db(i, id_now, kwargs):
     """)
     Values = [Id, Firstname,Position, Office, Age, Salary, data]
     # Processing Query
-    cursor.execute(SQLCommand, Values)
+    pointer.execute(SQLCommand, Values)
     # Committing any pending transaction to the database.
-    db_get_data.connection.commit()
+    connection.commit()
     # closing connection
     print("Data Successfully Inserted")
-    db_get_data.connection.close()
+    connection.close()
 
 
 def main(xx, **kwargs):

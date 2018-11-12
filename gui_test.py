@@ -83,7 +83,7 @@ class ExampleApp(tk.Tk):
         ent_1 = self.ent1.get()
         ddd = dbops.del_record_db(int(ent_1))
         '''Illustrate that we can write directly to stderr'''
-        sys.stderr.write("this is stderr\n")
+        sys.stderr.write("this is stderr\n" + str(ent_1))
 
 class TextRedirector(object):
     def __init__(self, widget, tag="stdout"):
@@ -93,7 +93,7 @@ class TextRedirector(object):
     def write(self, str):
         self.widget.configure(state="normal")
         self.widget.insert("end", str, (self.tag,))
-        self.widget.configure(state="enable")
+        #self.widget.configure(state="disabled")
 
 app = ExampleApp()
 app.mainloop()
