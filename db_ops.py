@@ -21,6 +21,33 @@ def db_get_data():
     return how_many_ids_at_db
 
 
+def del_record_db(dd):
+    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+    pointer = conn.cursor()
+    pointer.execute("""
+    SELECT * FROM [testDB].[dbo].[final_data_table1]
+    """)
+
+    records = pointer.fetchall()
+
+    for record in records:
+        print(record)
+
+    pointer.execute(""" delete from [testDB].[dbo].[final_data_table1] 
+    where ID=?""", (dd,))
+    print("\nRecord Deleted successfully ")
+    print("\nDisplaying Total records from mobile table after Deleting single record \n ")
+    pointer.execute("""
+        SELECT * FROM [testDB].[dbo].[final_data_table1]
+        """)
+
+    records = pointer.fetchall()
+    for record in records:
+        print(record)
+
+    return dd
+
+
 # insert data to local DB
 def record_to_db(i, id_now, kwargs):
     print(kwargs['Firstname'])

@@ -5,7 +5,7 @@ import db_ops as dbops
 class ExampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
-        self.geometry("480x220+800+250")
+        self.geometry("380x425+800+250")
         self.title("project-DB1")
         toolbar = tk.Frame(self)
         toolbar.pack(side="top", fill="x")
@@ -15,7 +15,7 @@ class ExampleApp(tk.Tk):
         b2.pack(in_=toolbar, side="left")
 
         self.text = tk.Text(self, wrap="word")
-        self.text.place(x=300, y=5, height=205, width=170)
+        self.text.place(x=5, y=150+65, height=205, width=370)
 
         self.lbl1 = tk.Label()
         self.lbl1.configure(text='''Number=0''')
@@ -80,6 +80,8 @@ class ExampleApp(tk.Tk):
         # print("this is stdout")
 
     def print_stderr(self):
+        ent_1 = self.ent1.get()
+        ddd = dbops.del_record_db(int(ent_1))
         '''Illustrate that we can write directly to stderr'''
         sys.stderr.write("this is stderr\n")
 
@@ -91,7 +93,7 @@ class TextRedirector(object):
     def write(self, str):
         self.widget.configure(state="normal")
         self.widget.insert("end", str, (self.tag,))
-        self.widget.configure(state="disabled")
+        self.widget.configure(state="enable")
 
 app = ExampleApp()
 app.mainloop()
