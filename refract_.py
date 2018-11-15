@@ -1,65 +1,16 @@
 import pyodbc
 import take_csv as tcsv
+import ui as ui
 
+global connection
+global pointer
+connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+pointer = connection.cursor()
 
-class DBConnect(object):
-    def __init__(self):
-        global connection
-        global pointer
-        connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
-        pointer = connection.cursor()
-        global sql_call_del
-        global sql_call_get
-        global sql_call_input
-
-        sql_call_get = ("""
-            SELECT * FROM [testDB].[dbo].[final_data_table1]
-            ORDER BY [ID]
-            """)
-
-        sql_call_input = ("""
-            INSERT INTO final_data_table1 
-            ([ID],[Name],[Position],[Office],[Age],[Salary],[Date]) 
-            VALUES (?,?,?,?,?,?,?)
-            """)
-
-        sql_call_del = ("""
-            delete from [testDB].[dbo].[final_data_table1] 
-            where ID=?
-            """)
-
-
-
-    def get_db_data(self):
-        pass
-
-    def qtt_db_records(self):
-        pointer.execute(sql_call_get)
-        data_all = []
-        while True:
-            row = pointer.fetchone()
-            if not row:
-                break
-            data_all.append(row)
-        records_qtt = len(data_all)
-        return records_qtt
-
-    def add_db_record(self, **kwargs):
-        values = [kwargs, kwargs, kwargs, kwargs, kwargs, kwargs, kwargs]
-        pointer.execute(sql_call_input, values)
-        connection.commit()
-
-
-    def del_db_record(self, *args):
-        pointer.execute(sql_call_del, args)
-        connection.commit()
-        connection.close()
-
-
-
+# getting data from local DB
 def db_get_data():
-    # connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
-    # pointer = connection.cursor()
+    connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+    pointer = connection.cursor()
 
     pointer.execute("""
     SELECT * FROM [testDB].[dbo].[final_data_table1]
@@ -104,23 +55,35 @@ def get_list():
     data_list = [table_data_firstname, table_data_Position, table_data_Office,
                  table_data_Age, table_data_Salary, table_data_Date]
 
+    #print(data_list[1][0])
     return data_list
 
 def del_record_db(dd):
-    # conn = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
-    # pointer = conn.cursor()
-
-    # SQLCommand = ("""
-    # delete from [testDB].[dbo].[final_data_table1]
-    # where ID=?
+    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+    pointer = conn.cursor()
+    # pointer.execute("""
+    # SELECT * FROM [testDB].[dbo].[final_data_table1]
     # """)
+    #
+    # records = pointer.fetchall()
+    #
+    # for record in records:
+    #     print(record)
 
-    pointer.execute(sql_call_del, dd)
+
+    #cursor = pointer
+    SQLCommand = ("""
+    delete from [testDB].[dbo].[final_data_table1] 
+    where ID=?
+    """)
+    ID = dd
+    # Processing Query
+    pointer.execute(SQLCommand, ID)
     # Committing any pending transaction to the database.
-    connection.commit()
+    conn.commit()
     # closing connection
     print("Data Successfully Deleted")
-    connection.close()
+    conn.close()
 
     #
     # pointer.execute("""
@@ -149,9 +112,11 @@ def record_to_db(i, id_now, kwargs):
 
 
     csv_data = tcsv.csv_data()
+    #print(csv_data[0])
+    #i = 7               # <------
     Id = int(id_now) + 1
 
-    if i == 0:  # adding to DB from entry fields
+    if i == 0:
         Firstname = (kwargs['Firstname'])
         Position = (kwargs['Position'])
         Office = (kwargs['Office'])
@@ -159,7 +124,7 @@ def record_to_db(i, id_now, kwargs):
         Salary = (kwargs['Salary'])
         data = (kwargs['data'])
 
-    else:  # adding from csv file by entered number
+    else:
         Firstname = csv_data[i][0]
         Position = csv_data[i][1]
         Office = csv_data[i][2]
