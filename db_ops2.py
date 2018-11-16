@@ -1,5 +1,5 @@
 import pyodbc
-import take_csv as tcsv
+import csv
 
 
 class DBConnect(object):
@@ -35,6 +35,28 @@ class DBConnect(object):
             FROM [testDB].[dbo].[final_data_table1]
             """)
 
+    def csv_data(self):
+        list_of_lists = []
+        lists = []
+        file_path = 'data.csv'
+        with open(file_path, 'rU') as f:  # opens PW file
+            data = list(list(rec) for rec in csv.reader(f, delimiter=','))  # reads csv into a list of lists
+            for row in data:
+                list_of_lists.append((list(lists)))
+                lists = []
+                for username in row:
+                    lists.append(username)
+        del list_of_lists[0]
+        del list_of_lists[0]
+        return list_of_lists
+
+    def entry_count(self):
+        count = pointer.execute(sql_entry_count)
+        data = count.fetchall()
+        for i in data:
+            x = i[0]
+        return x
+
     def get_all_db_records(self):
         data = pointer.execute(sql_call_get)
 
@@ -61,8 +83,8 @@ class DBConnect(object):
 
         return data_list
 
-    def add_db_record(self, id_now, kwargs):
-        Id = int(id_now) + 1
+    def add_db_record(self, kwargs):
+        Id = DBConnect.entry_count(self) + 1
         Firstname = (kwargs['Firstname'])
         Position = (kwargs['Position'])
         Office = (kwargs['Office'])
@@ -74,9 +96,9 @@ class DBConnect(object):
         connection.commit()
         print("Data Successfully Inserted")
 
-    def add_db_record_csv(self, i, id_now):
-        csv_data = tcsv.csv_data()
-        Id = int(id_now) + 1
+    def add_db_record_csv(self, i):
+        csv_data = DBConnect.csv_data(self)
+        Id = DBConnect.entry_count(self) + 1
         Firstname = csv_data[i][0]
         Position = csv_data[i][1]
         Office = csv_data[i][2]
@@ -93,21 +115,32 @@ class DBConnect(object):
         connection.commit()
         print("Entry Successfully Deleted")
 
-    def entry_count(self):
-        count = pointer.execute(sql_entry_count)
-        data = count.fetchall()
-        for i in data:
-            x = i[0]
-        return x
+
+global kwr_data
+kwr_data = dict(Firstname="Bob", Position="General", Office="Fremont", Age="85", Salary="$15225", data="15-12-98")
+db = DBConnect()                          # assigning to class
+# x = db.entry_count(); print(x)          # Count how many entry's at the DB already
+# print(db.get_all_db_records()[0][x-1])  # Get all records from DB as list of lists where [6 main columns][N - rows]
+# db.add_db_record(kwr_data)              # Record new entry to DB from kwr_data dictionary
+# print(db.get_all_db_records()[0][x])    # Get all records from DB as list of lists where [6 main columns][N - rows]
+# print(db.entry_count())                 # Count how many entry's at the DB already
+# db.del_db_entry(28)                     # Delete entry from DB
+# print(db.entry_count())                 # Count how many entry's at the DB already
+# db.add_db_record_csv(31)                # Get data from csv file end enter it to DB
+# x = db.entry_count(); print(x)          # Count how many entry's at the DB already
 
 
-kwr_data = dict(Firstname="Bahrum", Position="Test", Office="Fremont", Age="15", Salary="$15225", data="15-12-2098")
-db = DBConnect()
-x = db.entry_count()
-print(x)
-print(db.get_all_db_records()[0][x-1])
-db.add_db_record(x, kwr_data)
-print(db.get_all_db_records()[0][x])
-print(db.entry_count())
-db.del_db_entry(28)
-print(db.entry_count())
+def main():
+    x = db.entry_count()
+    print(x)
+
+    db.add_db_record_csv(40)
+
+    x = db.entry_count()
+    print(x)
+    pass
+
+
+if __name__ == '__main__':
+    main()
+

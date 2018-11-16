@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import sys
 import db_ops as dbops
+import db_ops2 as dbops2
 
 class ExampleApp(tk.Tk):
     def __init__(self):
@@ -101,21 +102,27 @@ class ExampleApp(tk.Tk):
 
     def print_stdout(self):
 
-        ent_1 = self.ent1.get()
-        x = dbops.main(int(ent_1), Firstname=self.ent2.get(),
-                       Position=self.ent3.get(), Office=self.ent4.get(),
-                       Age=self.ent5.get(), Salary=self.ent6.get(), data=self.ent7.get())
+        # ent_1 = self.ent1.get()
+        # x = dbops.main(int(ent_1), Firstname=self.ent2.get(),
+        #                Position=self.ent3.get(), Office=self.ent4.get(),
+        #                Age=self.ent5.get(), Salary=self.ent6.get(), data=self.ent7.get())
 
+        XX = dbops2.DBConnect.entry_count(self)
+        XX2 = dbops2.DBConnect.get_all_db_records(self)
+
+        print(XX)
+        print(XX2)
         '''Illustrate that using 'print' writes to stdout'''
         # print("this is stdout")
 
     def print_stderr(self):
-        self.table(1)
-
-        ent_1 = self.ent1.get()
-        ddd = dbops.del_record_db(int(ent_1))
-        '''Illustrate that we can write directly to stderr'''
-        sys.stderr.write("this is stderr\n" + str(ent_1))
+        # self.table(1)
+        #
+        # ent_1 = self.ent1.get()
+        # ddd = dbops.del_record_db(int(ent_1))
+        # '''Illustrate that we can write directly to stderr'''
+        # sys.stderr.write("this is stderr\n" + str(ent_1))
+        pass
 
 class TextRedirector(object):
     def __init__(self, widget, tag="stdout"):
