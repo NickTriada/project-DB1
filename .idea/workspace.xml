@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/project-DB1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project-DB1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +61,15 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="862986762">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="project-DB1" />
@@ -85,7 +93,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test_form_iron.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
+                <state relative-caret-position="510">
                   <caret line="30" selection-start-line="30" selection-end-line="30" />
                   <folding>
                     <element signature="e#0#20#0" expanded="true" />
@@ -99,10 +107,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="255">
                   <caret line="15" selection-start-line="15" selection-end-line="15" />
-                  <folding>
-                    <marker date="1541409980593" expanded="true" signature="931:935" ph="..." />
-                    <marker date="1541409980593" expanded="true" signature="2002:2014" ph="..." />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -110,12 +114,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db_ops.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2431">
-                  <caret line="144" column="18" selection-start-line="144" selection-start-column="18" selection-end-line="144" selection-end-column="18" />
+                <state relative-caret-position="527">
+                  <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
-                    <marker date="1542186109293" expanded="true" signature="64:69" ph="..." />
-                    <marker date="1542186109293" expanded="true" signature="88:93" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -124,8 +126,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db_ops2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+                <state relative-caret-position="374">
+                  <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -140,12 +142,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/gui_test.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="248">
-                  <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+                <state relative-caret-position="2227">
+                  <caret line="131" column="25" lean-forward="true" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
                   <folding>
                     <element signature="e#0#20#0" expanded="true" />
-                    <marker date="1543739458458" expanded="true" signature="3749:3755" ph="..." />
-                    <marker date="1543739458458" expanded="true" signature="4311:4320" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -199,9 +199,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="22" />
-    <option name="width" value="3556" />
-    <option name="height" value="2092" />
+    <option name="x" value="144" />
+    <option name="width" value="2716" />
+    <option name="height" value="1946" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -210,7 +210,7 @@
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Python Scripts/Qt_designer_test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -376,9 +376,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.gui_test" />
+        <item itemvalue="Python.db_ops2" />
         <item itemvalue="Python.cv_t1" />
         <item itemvalue="Python.markers" />
-        <item itemvalue="Python.db_ops2" />
         <item itemvalue="Python.qwer12" />
       </list>
     </recent_temporary>
@@ -477,7 +477,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1933" height="1053" extended-state="6" />
+    <frame x="-7" y="-7" width="1837" height="1189" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984227" weight="0.15392725" />
@@ -485,7 +485,7 @@
       <window_info id="Favorites" order="2" weight="0.1444386" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49973643" weight="0.22993493" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49973643" weight="0.22916667" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39804772" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -556,9 +556,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="done with db_ops2 file &#10;refractoring - DONE &#10;csv reading added to the same file (for future file path setting)&#10;&#10;starting with adaptation new db_ops2 to GUI" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data.csv" />
     <entry file="file://$PROJECT_DIR$/test_any.py" />
     <entry file="file://$PROJECT_DIR$/anycode.py" />
     <entry file="file://$PROJECT_DIR$/app2.py" />
@@ -592,10 +590,14 @@
       </provider>
     </entry>
     <entry file="file://C:/cv_tes/markers.py" />
-    <entry file="file://C:/cv_tes/cv_t1.py">
+    <entry file="file://C:/cv_tes/cv_t1.py" />
+    <entry file="file://$PROJECT_DIR$/test_form_iron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="510">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -609,43 +611,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_form_iron.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <marker date="1541409980593" expanded="true" signature="931:935" ph="..." />
-            <marker date="1541409980593" expanded="true" signature="2002:2014" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="144" column="18" selection-start-line="144" selection-start-column="18" selection-end-line="144" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1542186109293" expanded="true" signature="64:69" ph="..." />
-            <marker date="1542186109293" expanded="true" signature="88:93" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_ops2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+        <state relative-caret-position="527">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -654,12 +630,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gui_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+        <state relative-caret-position="2227">
+          <caret line="131" column="25" lean-forward="true" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1543739458458" expanded="true" signature="3749:3755" ph="..." />
-            <marker date="1543739458458" expanded="true" signature="4311:4320" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_ops2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
