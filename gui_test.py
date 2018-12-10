@@ -94,7 +94,7 @@ class ExampleApp(tk.Tk):
         #
         table = dbops.get_list()
         data = arg
-        #print(data)
+        # print(data)
         for x in range(0, 20):
             self.tree.insert("", x, "", text=table[0][x], values=(table[1][x], table[2][x],
                                                                   table[3][x], table[4][x], table[5][x]))
@@ -132,7 +132,7 @@ class TextRedirector(object):
     def write(self, str):
         self.widget.configure(state="normal")
         self.widget.insert("end", str, (self.tag,))
-        #self.widget.configure(state="disabled")
+        # self.widget.configure(state="disabled")
 
 app = ExampleApp()
 app.mainloop()
