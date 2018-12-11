@@ -134,11 +134,12 @@ def main():
     x = db.entry_count()
     print(x)
 
-    db.add_db_record_csv(40)
-
-    x = db.entry_count()
-    print(x)
-    pass
+    # for x in range(4,50):
+    #     # db.del_db_entry(x)
+    #     db.add_db_record_csv(x)
+    #     x = db.entry_count()
+    #     print(x)
+    # pass
 
 
 if __name__ == '__main__':
