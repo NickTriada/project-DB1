@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import sys
-import db_ops as dbops
+from try_tests import db_ops as dbops
 import db_ops2 as dbops2
 
 class ExampleApp(tk.Tk):

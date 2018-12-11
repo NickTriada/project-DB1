@@ -12,7 +12,7 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
-import db_project_support
+from try_tests import db_project_support
 
 
 #import db_ops as dbops
