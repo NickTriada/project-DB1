@@ -11,11 +11,11 @@ class DBConnect(object):
         global sql_call_input
         global sql_entry_count
 
-        connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB;UID=;PWD=')
+        connection = pyodbc.connect('DRIVER={SQL Server};SERVER=NICKTRIADA\SQLEXPRESS;DATABASE=testDB121;UID=;PWD=')
         pointer = connection.cursor()
 
         sql_call_get = ("""
-            SELECT * FROM [testDB].[dbo].[final_data_table1]
+            SELECT * FROM [testDB121].[dbo].[final_data_table1]
             ORDER BY [ID]
             """)
 
@@ -26,13 +26,13 @@ class DBConnect(object):
             """)
 
         sql_call_del = ("""
-            delete from [testDB].[dbo].[final_data_table1] 
+            delete from [testDB121].[dbo].[final_data_table1] 
             where ID=?
             """)
 
         sql_entry_count = (""" 
             SELECT COUNT(ID) 
-            FROM [testDB].[dbo].[final_data_table1]
+            FROM [testDB121].[dbo].[final_data_table1]
             """)
 
     def csv_data(self):
@@ -133,6 +133,8 @@ db = DBConnect()                          # assigning to class
 def main():
     x = db.entry_count()
     print(x)
+    # print(db.get_all_db_records()[0][1])
+    print(db.get_all_db_records()[0][x - 1])
 
     # for x in range(4,50):
     #     # db.del_db_entry(x)
